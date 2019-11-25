@@ -44,8 +44,8 @@ void render() {
         float mercN = log(tan((PI/4)+(latRad/2)));
         float y = (mapHeight/2)-(mapWidth*mercN/(2*PI));
 
-        std::cout << latitude << " : " << longitude << std::endl;
-        std::cout << x << " : " << y << std::endl;
+        std::cout << "latitude: " << latitude << " longitude: " << longitude << std::endl;
+        std::cout << "x: " << x << " y: " << y << std::endl;
 
         framebuffer[x+y*mapWidth] = Vec3f(255,0,0);
     }
