@@ -47,7 +47,9 @@ void render() {
         std::cout << "latitude: " << latitude << " longitude: " << longitude << std::endl;
         std::cout << "x: " << x << " y: " << y << std::endl;
 
-        framebuffer[x+y*mapWidth] = Vec3f(255,0,0);
+        //if(x < 0 || y < 0) continue;
+
+        framebuffer[x+y*mapWidth] = Vec3f(0,0,0);
     }
 
     std::ofstream ofs; // save the framebuffer to file
