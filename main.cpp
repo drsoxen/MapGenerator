@@ -11,8 +11,8 @@
 #define PI 3.14159265358979323846
 
 void render() {
-    const int mapWidth    = 1024;
-    const int mapHeight   = 768;
+    const int mapWidth    = 1200;
+    const int mapHeight   = 1200;
 
     std::vector<Vec3f> framebuffer(mapWidth*mapHeight);
 
@@ -26,7 +26,7 @@ void render() {
         }
     }
 
-    std::ifstream inFile("airports.txt");
+    std::ifstream inFile("test.txt");
 
     for (int counter = 0; !inFile.eof(); counter++)
     {
@@ -36,20 +36,18 @@ void render() {
         std::string temp = "";
         getline(inFile,temp);
         latitude = strtof((temp).c_str(),0);
+        std::cout << "latitude: " << latitude << std::endl;
         getline(inFile,temp);
         longitude = strtof((temp).c_str(),0);
+        std::cout << "longitude: " << longitude << std::endl;
 
         //https://stackoverflow.com/questions/14329691/convert-latitude-longitude-point-to-a-pixels-x-y-on-mercator-projection
 
         float x = (longitude+180)*(mapWidth/360);
-        float latRad = latitude*PI/180;
-        float mercN = log(tan((PI/4)+(latRad/2)));
-        float y = (mapHeight/2)-(mapWidth*mercN/(2*PI));
+        float y = (mapHeight/2)-(mapWidth*log(tan((PI/4)+((latitude*PI/180)/2)))/(2*PI));
 
-        std::cout << "latitude: " << latitude << " longitude: " << longitude << std::endl;
         std::cout << "x: " << x << " y: " << y << std::endl;
-
-        //if(x < 0 || y < 0) continue;
+        std::cout << std::endl;
 
         framebuffer[x+y*mapWidth] = Vec3f(0,0,0);
     }
