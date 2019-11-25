@@ -39,6 +39,8 @@ void render() {
         getline(inFile,temp);
         longitude = strtof((temp).c_str(),0);
 
+        //https://stackoverflow.com/questions/14329691/convert-latitude-longitude-point-to-a-pixels-x-y-on-mercator-projection
+
         float x = (longitude+180)*(mapWidth/360);
         float latRad = latitude*PI/180;
         float mercN = log(tan((PI/4)+(latRad/2)));
