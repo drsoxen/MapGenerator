@@ -11,8 +11,8 @@
 #define PI 3.14159265358979323846
 
 void render() {
-    const float mapWidth    = 1124;
-    const float mapHeight   = 768;
+    const float mapWidth    = 4096;
+    const float mapHeight   = 2048;
 
     std::vector<Vec3f> framebuffer(mapWidth*mapHeight);
 
@@ -26,26 +26,26 @@ void render() {
         }
     }
 
-    std::ifstream inFile("cities.txt");
+    std::ifstream inFile("airports.txt");
 
     for (int counter = 0; !inFile.eof(); counter++)
     {
-        float latitude    = 0; // (φ)
-        float longitude   = 0; // (λ)
+        float latitude    = 0; 
+        float longitude   = 0;
 
         std::string temp = "";
         getline(inFile,temp);
         latitude = strtof((temp).c_str(),0);
-        std::cout << "latitude: " << latitude << std::endl;
+        //std::cout << "latitude: " << latitude << std::endl;
         getline(inFile,temp);
         longitude = strtof((temp).c_str(),0);
-        std::cout << "longitude: " << longitude << std::endl;
+        //std::cout << "longitude: " << longitude << std::endl;
 
         int x =  (mapWidth/360.0) * (180 + longitude);
         int y =  (mapHeight/180.0) * (90 - latitude);
 
-        std::cout << "x: " << x << " y: " << y << std::endl;
-        std::cout << std::endl;
+        //std::cout << "x: " << x << " y: " << y << std::endl;
+        //std::cout << std::endl;
 
         framebuffer[x+y*mapWidth] = Vec3f(255,0,0);
     }
